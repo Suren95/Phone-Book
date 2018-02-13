@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PhoneBook.Models.PhoneModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+    <style>
+        th:hover, td:hover {
+            background-color: #cbd6e0;
+        }
+
+        th {
+            background-color: #428bca;
+        }
+
+        .numbering {
+            counter-reset: serial-number;
+        }
+
+            .numbering td:first-child:before {
+                counter-increment: serial-number;
+                content: counter(serial-number);
+            }
+
+        input[type=button] {
+            display: inline-block;
+            background-color: #f44336;
+            padding: 8px 20px;
+            font-size: 10px;
+            border: none;
+            border-radius: 30px;
+            width: 75px;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="col-md-4" style="left:200px">
+            <p><a class="btn btn-primary btn-lg" id="showdelete" onclick="myFunction()">Delete Contact &raquo;</a></p>
+        </div>
+        <div class="col-md-6" style="left:200px">
+            <p><a class="btn btn-primary btn-lg" id="showedit" onclick="myFunction()">Edit Contact &raquo;</a></p>
+    </div>
+    </div>
+
+    <table cellpadding="15" class="numbering" align="center" >
+        <caption>Phone Bbook</caption>
+        <thead>
+            <tr>
+                <th>N</th>
+                <th>Contact Name</th>
+                <th>Email</th>
+                <th colspan="2">Phone Number</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><hr /></td>
+                <td>@item.ContactName <hr /></td>
+                <td>@item.EmailAddress <hr /></td>
+                <td>@item.PhoneNumber1 <hr /></td>
+                <td>@item.PhoneNumber2 <hr /></td>
+                <td><input class="deleteButton" type="button" value="Delete" onclick="location.href='/Home/DeleteContact?id=@item.ContactId'" /></td>
+                <td><input class="editButton" type="button" value="Edit" onclick="location.href='/Home/Edit?id=@item.ContactId'" /></td>
+            </tr>
+        }
+    </table>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/HideShow.js"></script>
+</body>
+</html>
+
+
+

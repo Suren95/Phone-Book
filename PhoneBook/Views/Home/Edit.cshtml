@@ -1,0 +1,48 @@
+﻿@model PhoneBook.Models.PhoneModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<html>
+<head>
+    <style>
+        #button {
+            display: inline-block;
+            width: 70px;
+            height:38px;
+            margin-left: -121px;
+        }
+    </style>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+
+<body>
+    <form method="post" action="EditContact" style="padding-top:50px;">
+        <table class="table">
+            <tr>
+                <th>Contact Name </th>
+                <th>Email</th>
+                <th>PhoneNumber*</th>
+                <th>PhoneNumber</th>
+                <th>Change</th>
+            </tr>
+            <tr>
+                <td><input type="text" value="@Model.ContactName" name="ContactName" required /></td>
+                <td><input type="email" value="@Model.EmailAddress" name="EmailAddress" required /></td>
+                <td><input type="tel" value="@Model.PhoneNumber1" name="PhoneNumber1" maxlength="9" min="9" pattern="\d{3}[\]\d{3}[\]\d{3}" required /></td>
+                <td><input type="tel" value="@Model.PhoneNumber2" name="PhoneNumber2" maxlength="9" min="9" pattern="\d{3}[\]\d{3}[\]\d{3}" /></td>
+                <td><input type="hidden" value="@Model.Id" name="Id" /></td>
+                <td><input type="hidden" value="@Model.ContactId" name="ContactId" /></td>
+                <th>
+                    <button type="submit" class="btn btn-primary" id="button">
+                        Save
+                    </button>
+
+                </th>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+

@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Add";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Contact</title>
+    <style>
+        #form{
+            padding-top:150px;
+
+        }
+        input {
+            display: inline-block;
+            margin-top: 8px;
+            background-color: #c3cbd2;
+            width: 95%;
+            height: 35px;
+            border-radius: 14px;
+            border: none;
+            max-width: 300px;
+            text-align: center;
+        }
+
+            #submit {
+                width: 100%;
+                background-color: #4CAF50;
+                padding: 10px;
+                margin: 20px 0px;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+            }
+        .number {
+            color: #070;
+            cursor: pointer;
+            left: 430px;
+        }
+    </style>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div id="form">
+        <form method="post" action="AddContact" class="text-center">
+            <label for="Name">Name*</label>
+            <input id="Name" type="text" name="ContactName" maxlength="20" min="1" required /><br /> <br />
+
+            <span id="addNumber" class="number glyphicon glyphicon-plus"></span>
+
+            <label for="phone">PhoneNumber*</label>
+            <input id="phone" class="phone-input" value="" type="tel" name="PhoneNumber1" placeholder="000-000-000" maxlength="11" pattern="\d{3}[\-]\d{3}[\-]\d{3}" required />
+
+            @*<label for="phonee">PhoneNumber</label>*@
+            <input id="phonee" class="phone-input" value="" type="tel" name="PhoneNumber2" placeholder="000-000-000" maxlength="11" pattern="\d{3}[\-]\d{3}[\-]\d{3}" style="margin-left: 25px;"/><br /> <br />
+            <p style="color:red"> @ViewBag.text3</p>
+            <p style="color:red"> @ViewBag.text4</p>
+
+            <label for="email">Email*</label>
+            <input id="email" type="email" name="EmailAddress" placeholder="email@example.com" required /><br /> <br />
+            <p style="color:red"> @ViewBag.text5</p>
+
+            <input id="submit" type="submit" value="Add" class="btn btn-primary" />
+        </form>
+    </div>
+    <script>
+        $('.phone-input').keyup(function () {
+            var val = this.value.replace(/\D/g, '');
+            var newVal = '';
+            while (val.length > 3) {
+                newVal += val.substr(0, 3) + '-';
+                val = val.substr(3);
+            }
+            newVal += val;
+            this.value = newVal;
+        });
+
+        $("#phonee").hide();
+        $("#addNumber").click(function myFunction() {
+            $("#phonee").show(1000);
+        });
+    </script>
+</body>
+</html>
